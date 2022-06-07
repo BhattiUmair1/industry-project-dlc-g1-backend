@@ -12,7 +12,7 @@ builder.Services.AddTransient<IUserInfoRepository, UserInfoRepository>();
 
 FirebaseApp.Create(new AppOptions
 {
-    Credential = GoogleCredential.FromFile(@"./Firebase/Firebasestudyapp-343918-firebase-adminsdk-cm4kr-2069e8f542.json")
+    Credential = GoogleCredential.FromFile(@"./Firebase/project-dlc-firebase-adminsdk.json")
 });
 
 var ValidIssuer = builder.Configuration.GetSection("Jwt:Firebase:ValidIssuer");
@@ -49,7 +49,7 @@ DateTime timerStarted = DateTime.Now;
 
 
 // timer
-app.MapGet("api/HPM/timer/{request}", (string request) =>
+app.MapGet("api/HPM/timer/{request}", async (string request) =>
 {
     if (request == "start")
     {
@@ -72,7 +72,7 @@ app.MapGet("api/HPM/timer/{request}", (string request) =>
 
 
 // get current
-app.MapGet("api/HPM/team/{team}/score/{currentScore}", (string team, int currentScore, IPlayerService service) =>
+app.MapGet("api/HPM/team/{team}/score", async (string team, int currentScore, IPlayerService service) =>
 {
     if (team == "thuis")
     {
