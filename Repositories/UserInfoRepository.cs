@@ -2,7 +2,7 @@
 {
     public interface IUserInfoRepository
     {
-
+        Task<int> GetScoreAsync(string team, string playerID);
         //Task<Set> GetSetAsync(string DocRef);
         //Task<Set> AddSetAsync(Set set);
         //Task<Set> UpdateSetAsync(Set set);
@@ -18,6 +18,18 @@
         {
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", _path);
             _db = FirestoreDb.Create("studyapp-343918");
+        }
+
+        public async Task<int> GetScoreAsync(string team)
+        {
+            Query querySets = _db.Collection("players").WhereEqualTo("DocRef", DocRef);
+            QuerySnapshot querySetsSnapshot = await querySets.GetSnapshotAsync();
+            if (querySetsSnapshot.FirstOrDefault() != null)
+            {
+                return querySetsSnapshot.FirstOrDefault().ConvertTo<Set>();
+            }
+            int test = 21;
+            return test;
         }
 
 
