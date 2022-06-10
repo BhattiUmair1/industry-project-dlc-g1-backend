@@ -47,6 +47,7 @@ app.MapGet("/", () =>
 
 DateTime timerStarted = DateTime.Now;
 
+#region GET
 
 // timer
 app.MapGet("api/HPM/timer/{request}", async (string request) =>
@@ -59,7 +60,7 @@ app.MapGet("api/HPM/timer/{request}", async (string request) =>
     else if (request == "reset")
     {
         var timerReset = timerStarted.Subtract(timerStarted);
-        return Results.Ok(new { timer = "Resetted", resetTime = timerReset });
+        return Results.Ok(new { timer = "Is reset", resetTime = timerReset });
 
     }
     else if (request == "time")
@@ -70,13 +71,12 @@ app.MapGet("api/HPM/timer/{request}", async (string request) =>
     return Results.BadRequest(new { request = "Please make sure the route is correct." });
 });
 
-
 // get current
-app.MapGet("api/HPM/team/{team}/score", async (string team, int currentScore, IPlayerService service) =>
+app.MapGet("api/HPM/team/{team}/score", async (string team, int currentScore, IPlayerService playerService) =>
 {
     if (team == "thuis")
     {
-
+        playerService.GetScoreAsync(team, )
     }
     else if (team == "uit") {
 
@@ -85,6 +85,24 @@ app.MapGet("api/HPM/team/{team}/score", async (string team, int currentScore, IP
     return Results.BadRequest(new { request = "Please make sure that team name is a string and the score is of the type int." });
 
 });
+#endregion
+
+#region POST
+    
+#endregion
+
+#region UPDATE
+    
+#endregion
+
+#region DELETE
+    
+#endregion
+
+
+
+
+
 
 // create a set
 //app.MapPost("/set", [Authorize] async (IValidator<Set> validator, IValidator<Studyset> validator1, Set set, ISetService service) =>
