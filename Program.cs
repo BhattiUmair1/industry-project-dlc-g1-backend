@@ -12,23 +12,23 @@ builder.Services.AddTransient<IUserInfoRepository, UserInfoRepository>();
 
 FirebaseApp.Create(new AppOptions
 {
-    Credential = GoogleCredential.FromFile(@"./Firebase/project-dlc-firebase-adminsdk.json")
+  Credential = GoogleCredential.FromFile(@"./Firebase/project-dlc-firebase-adminsdk.json")
 });
 
 var ValidIssuer = builder.Configuration.GetSection("Jwt:Firebase:ValidIssuer");
 var ValidAudience = builder.Configuration.GetSection("Jwt:Firebase:ValidAudience");
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
-    opt.Authority = ValidIssuer.Value;
-    opt.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidIssuer = ValidIssuer.Value,
-        ValidAudience = ValidAudience.Value,
-        ValidateIssuerSigningKey = true,
-    };
+  opt.Authority = ValidIssuer.Value;
+  opt.TokenValidationParameters = new TokenValidationParameters
+  {
+    ValidateIssuer = true,
+    ValidateAudience = true,
+    ValidateLifetime = true,
+    ValidIssuer = ValidIssuer.Value,
+    ValidAudience = ValidAudience.Value,
+    ValidateIssuerSigningKey = true,
+  };
 });
 
 var app = builder.Build();
@@ -41,7 +41,7 @@ app.UseSwaggerUI();
 
 app.MapGet("/", () =>
 {
-    return new { data = "working" };
+  return new { data = "working" };
 });
 
 
@@ -50,53 +50,43 @@ DateTime timerStarted = DateTime.Now;
 #region GET
 
 // timer
-app.MapGet("api/HPM/timer/{request}", async (string request) =>
+// app.MapGet("api/HPM/timer/{request}", async (string request) =>
+// {
+//   if (request == "start")
+//   {
+//     DateTime timerStarted = DateTime.Now;
+//     return Results.Ok(new { timer = "started" });
+//   }
+//   else if (request == "reset")
+//   {
+//     var timerReset = timerStarted.Subtract(timerStarted);
+//     return Results.Ok(new { timer = "Is reset", resetTime = timerReset });
+
+//   }
+//   else if (request == "time")
+//   {
+//     TimeSpan time = timerStarted.Subtract(DateTime.Now);
+//     return Results.Ok(new { currentTime = time });
+//   }
+//   return Results.BadRequest(new { request = "Please make sure the route is correct." });
+// });
+
+app.MapGet("/api/HPM/players", (PlayerService playerService) =>
 {
-    if (request == "start")
-    {
-        DateTime timerStarted = DateTime.Now;
-        return Results.Ok(new { timer = "started" });
-    }
-    else if (request == "reset")
-    {
-        var timerReset = timerStarted.Subtract(timerStarted);
-        return Results.Ok(new { timer = "Is reset", resetTime = timerReset });
-
-    }
-    else if (request == "time")
-    {
-        TimeSpan time = timerStarted.Subtract(DateTime.Now);
-        return Results.Ok(new { currentTime = time });
-    }
-    return Results.BadRequest(new { request = "Please make sure the route is correct." });
-});
-
-// get current
-app.MapGet("api/HPM/team/{team}/score", async (string team, int currentScore, IPlayerService playerService) =>
-{
-    if (team == "thuis")
-    {
-        playerService.GetScoreAsync(team, )
-    }
-    else if (team == "uit") {
-
-    }
-
-    return Results.BadRequest(new { request = "Please make sure that team name is a string and the score is of the type int." });
-
+  return playerService.GetPlayers();
 });
 #endregion
 
 #region POST
-    
+
 #endregion
 
 #region UPDATE
-    
+
 #endregion
 
 #region DELETE
-    
+
 #endregion
 
 
