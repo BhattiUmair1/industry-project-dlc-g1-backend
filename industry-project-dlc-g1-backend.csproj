@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Firebase\studyapp-343918-firebase-adminsdk-cm4kr-2069e8f542.json">
+    <Content Update="Firebase/project-dlc-firebase-adminsdk.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

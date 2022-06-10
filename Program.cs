@@ -44,7 +44,7 @@ app.MapGet("/", () =>
 
 #region GET
 
-app.MapGet("/api/HPM/players", (PlayerService playerService) =>
+app.MapGet("/api/HPM/players", (IPlayerService playerService) =>
 {
   return playerService.GetPlayers();
 });

@@ -8,13 +8,13 @@
   public class UserInfoRepository : IUserInfoRepository
   {
     private readonly FirestoreDb _db;
-    private readonly string _path = @"./Firebase/Firebasestudyapp-343918-firebase-adminsdk-cm4kr-2069e8f542.json";
+    private readonly string _path = @"./Firebase/project-dlc-firebase-adminsdk.json";
     // dit nog bekijken
     //public static Precondition MustExist { get; }
     public UserInfoRepository()
     {
       Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", _path);
-      _db = FirestoreDb.Create("studyapp-343918");
+      _db = FirestoreDb.Create("test");
     }
 
     #region GET
