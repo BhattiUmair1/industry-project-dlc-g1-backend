@@ -44,15 +44,13 @@ app.MapGet("/", () =>
   return new { data = "working" };
 });
 
-
-DateTime timerStarted = DateTime.Now;
-
 #region GET
 
 app.MapGet("/api/HPM/players", (PlayerService playerService) =>
 {
   return playerService.GetPlayers();
 });
+
 #endregion
 
 #region POST

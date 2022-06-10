@@ -37,6 +37,44 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "FirebaseAuthentication.net": {
+              "target": "Package",
+              "version": "[3.7.2, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Google.Cloud.Firestore": {
+              "target": "Package",
+              "version": "[2.5.0, )"
+            },
+            "HotChocolate.AspNetCore": {
+              "target": "Package",
+              "version": "[12.7.0, )"
+            },
+            "HotChocolate.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[12.7.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
