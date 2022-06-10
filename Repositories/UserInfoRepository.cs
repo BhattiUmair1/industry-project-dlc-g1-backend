@@ -14,7 +14,7 @@
     public UserInfoRepository()
     {
       Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", _path);
-      _db = FirestoreDb.Create("test");
+      _db = FirestoreDb.Create("project-dlc");
     }
 
     #region GET

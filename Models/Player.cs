@@ -13,6 +13,8 @@ public class Player
 
   [FirestoreProperty]
   public bool IsPlayer { get; set; }
+  [FirestoreProperty]
+  public string poopie { get; set; }
 }
 
 
